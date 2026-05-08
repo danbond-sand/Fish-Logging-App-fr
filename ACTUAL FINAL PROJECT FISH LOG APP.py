@@ -1,6 +1,18 @@
 from dataclasses import dataclass
 from drafter import *
 
+set_site_information(
+    author="danbond@udel.edu",
+    description="""A brief description of what your website does.
+    Use a triple quoted string if you want to span multiple lines.""",
+    sources=["Drafter 1.95 documentation", "ChatGPT Drafter Tutor"],
+    planning=["your_planning_document.pdf"],
+    links=["https://github.com/danbond-sand/Fish-Logging-App-fr"]
+)
+hide_debug_information()
+set_website_title("Fish Log for Hog Slayers")
+set_website_framed(False)
+
 set_website_style("none")
 add_website_css("""
 body{
@@ -22,6 +34,19 @@ body{
     box-shadow: 2px 2px 10px lightgray
 }
 """)
+
+start_server(
+    State(
+        catches = dannys_catches,
+        next_id = 10,
+        filtering_species = "",
+        filtering_bait = "",
+        filtering_location = "",
+        min_weight = 0.0,
+        min_length = 0.0,
+        username = "Danny Ballz"
+    )
+)
 
 @dataclass
 class Catch:
@@ -922,16 +947,7 @@ def clear_all_filters(state: State) -> Page:
     
     return view_catches(state)
 
-start_server(
-    State(
-        catches = dannys_catches,
-        next_id = 10,
-        filtering_species = "",
-        filtering_bait = "",
-        filtering_location = "",
-        min_weight = 0.0,
-        min_length = 0.0,
-        username = "Danny Ballz"
+
     )
 )
 
